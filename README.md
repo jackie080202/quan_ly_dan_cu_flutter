@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # quan_ly_dan_cu
 
 A new Flutter project.
@@ -14,3 +15,6 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+=======
+# quan_ly_dan_cu_flutter
+>>>>>>> fd2d1d5e6c932cbceb4796a9c274da39799ff070
