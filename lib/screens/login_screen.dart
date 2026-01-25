@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'forgot_password_screen.dart';
 import 'home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -111,17 +112,35 @@ class LoginScreen extends StatelessWidget {
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
-                    'Quên mật khẩu',
-                    style: TextStyle(color: Colors.red),
+                
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const ForgotPasswordScreen(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      'Quên mật khẩu',
+                        style: TextStyle(color: Colors.red),
+                      ),
                   ),
-                  Text(
-                    'Đổi tài khoản',
-                    style: TextStyle(color: Colors.red),
-                  ),
-                ],
+                  GestureDetector(
+                    onTap: () {
+                      
+                        // TODO: xử lý đổi tài khoản sau
+                    },
+                    child: const Text(
+                      'Quên mật khẩu',
+                        style: TextStyle(color: Colors.red),
+                      ),
+                  )
+                ]
               ),
+
 
               const Spacer(),
 
@@ -145,7 +164,7 @@ class LoginScreen extends StatelessWidget {
                       style: TextStyle(decoration: TextDecoration.underline),
                     ),
                     SizedBox(height: 6),
-                    Text('Phiên bản 2.2.4'),
+                    
                   ],
                 ),
               ),

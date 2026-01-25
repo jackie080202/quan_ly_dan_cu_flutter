@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'wallet_screen.dart';
 import 'settings_screen.dart';
-import 'package:flutter/material.dart';
 import '../widgets/service_item.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,10 +18,11 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: const Color(0xfff5f5f5),
 
-      // ===== HEADER =====
+      // ===== BODY =====
       body: SingleChildScrollView(
         child: Column(
           children: [
+            // ===== HEADER =====
             Container(
               padding: const EdgeInsets.fromLTRB(16, 40, 16, 20),
               decoration: const BoxDecoration(
@@ -89,7 +90,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 16),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
@@ -121,20 +121,120 @@ class _HomeScreenState extends State<HomeScreen> {
 
             const SizedBox(height: 20),
 
-            // ===== BANNER =====
+            // ===== BANNER ĐẠI HỘI ĐẢNG =====
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Container(
-                height: 160,
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.05),
+                      blurRadius: 6,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
                 ),
-                child: const Center(
-                  child: Text(
-                    'Banner thông báo / sự kiện',
-                    style: TextStyle(fontSize: 16),
-                  ),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 56,
+                      height: 56,
+                      decoration: BoxDecoration(
+                        color: Colors.red.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: const Icon(
+                        Icons.campaign,
+                        color: Colors.red,
+                        size: 32,
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    const Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'ĐẠI HỘI ĐẢNG 2026',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 6),
+                          Text(
+                            'Cập nhật thông tin, văn kiện và các hoạt động liên quan đến Đại hội Đảng toàn quốc lần thứ XIV.',
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: Colors.black54,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            
+            const SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.05),
+                      blurRadius: 6,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 56,
+                      height: 56,
+                      decoration: BoxDecoration(
+                        color: Colors.red.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: const Icon(
+                        Icons.campaign,
+                        color: Colors.red,
+                        size: 32,
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    const Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'CHUYỂN ĐỔI SỐ QUỐC GIA',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 6),
+                          Text(
+                            'Triển khai dịch vụ công trực tuyến, hồ sơ điện tử và định danh số toàn dân.',
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: Colors.black54,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -149,26 +249,25 @@ class _HomeScreenState extends State<HomeScreen> {
         currentIndex: _currentIndex,
         selectedItemColor: Colors.red,
         unselectedItemColor: Colors.grey,
+        type: BottomNavigationBarType.fixed,
         onTap: (index) {
-          if (index == 1) {
-          Navigator.push(
-          context,
-          MaterialPageRoute(builder: (_) => const WalletScreen(), ),
-          );
-          }
-          if (index == 4) {
-          Navigator.push(
-          context,
-          MaterialPageRoute(builder: (_) => const SettingsScreen(), ),
-          );
-           if (index == 2) {
-          // TODO: mở QR screen sau
-          return;
-          }
-          }
+          if (index == _currentIndex) return;
+
           setState(() {
             _currentIndex = index;
           });
+
+          if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const WalletScreen()),
+            );
+          } else if (index == 4) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const SettingsScreen()),
+            );
+          }
         },
         items: const [
           BottomNavigationBarItem(
@@ -196,6 +295,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  // ===== QR BUTTON =====
   Widget _qrButton({required IconData icon, required String text}) {
     return Expanded(
       child: Container(
